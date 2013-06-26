@@ -5,7 +5,10 @@ namespace myun2
 {
 	namespace win32
 	{
-		class window;
+		class window
+		{
+		public:
+		};
 	}
 }
 
