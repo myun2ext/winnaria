@@ -5,7 +5,8 @@ namespace myun2
 {
 	namespace winoria
 	{
-		class win_main_holder
+		template <typename _Base>
+		class win_main_holder : public _Base
 		{
 		};
 	}
