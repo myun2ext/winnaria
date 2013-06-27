@@ -20,6 +20,21 @@ namespace myun2
 				HMENU hMenu;
 				HINSTANCE hInstance;
 				LPVOID lpParam;
+
+				window_options()
+				{
+					lpClassName = NULL;
+					lpWindowName = NULL;
+					dwStyle = NULL;
+					x = 0;
+					y = 0;
+					nWidth = 0;
+					nHeight = 0;
+					hWndParent = NULL;
+					hMenu = NULL;
+					hInstance = NULL;
+					lpParam = NULL;
+				}
 			};
 
 			struct create_window_failed_exception {};
