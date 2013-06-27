@@ -3,7 +3,7 @@
 
 namespace myun2
 {
-	namespace win32
+	namespace winoria
 	{
 		class window
 		{

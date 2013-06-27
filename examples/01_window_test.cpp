@@ -1,3 +1,4 @@
+#include "myun2/winoria/window.hpp"
 
 class win_main
 {
