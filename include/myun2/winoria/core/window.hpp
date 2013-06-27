@@ -7,11 +7,48 @@ namespace myun2
 	{
 		namespace core
 		{
+			struct window_options
+			{
+				LPCTSTR lpClassName;
+				LPCTSTR lpWindowName;
+				DWORD dwStyle;
+				int x;
+				int y;
+				int nWidth;
+				int nHeight;
+				HWND hWndParent;
+				HMENU hMenu;
+				HINSTANCE hInstance;
+				LPVOID lpParam;
+			};
+
+			struct create_window_failed_exception {};
+
 			class window
 			{
+			protected:
+				HWND m_hWnd;
 			public:
-				window() {}
-				//window() {}
+				window(){}
+				window(const window_options& params) { create(params); }
+				
+				void create(const window_options& params)
+				{
+					m_hWnd = ::CreateWindow(
+						param.lpClassName,
+						param.lpWindowName,
+						param.dwStyle,
+						param.x,
+						param.y,
+						param.nWidth,
+						param.nHeight,
+						param.hWndParent,
+						param.hMenu,
+						param.hInstance,
+						param.lpParam);
+
+					if ( m_hWnd == NULL ) throw create_window_failed_exception;
+				}
 			};
 		}
 	}
