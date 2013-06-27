@@ -1,4 +1,4 @@
-winnaria
+Winnaria
 ========
 
-Winoria? winnaria / Win32 API Wrapper for C++!
+Winoria? Winnaria! / **Win32 API Wrapper for C++!?**
