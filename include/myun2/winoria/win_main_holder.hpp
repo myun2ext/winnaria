@@ -10,10 +10,10 @@ namespace myun2
 		class application_instance
 		{
 		public:
-			HINSTANCE hInstance, 
-			HINSTANCE hPrevInstance, 
-			LPSTR lpCmdLine, 
-			int nCmdShow
+			HINSTANCE m_hInstance;
+			HINSTANCE m_hPrevInstance;
+			LPSTR m_lpCmdLine;
+			int m_nCmdShow;
 
 			application_instance(
 				HINSTANCE _hInstance, 
@@ -21,27 +21,28 @@ namespace myun2
 				LPSTR _lpCmdLine, 
 				int _nCmdShow
 			) :
-				hInstance(_hInstance),
-				hPrevInstance(_hPrevInstance),
-				lpCmdLine(_lpCmdLine),
-				nCmdShow(_nCmdShow)
+				m_hInstance(_hInstance),
+				m_hPrevInstance(_hPrevInstance),
+				m_lpCmdLine(_lpCmdLine),
+				m_nCmdShow(_nCmdShow)
 			{}
 		};
 
 		///////////////////////
 
-		template <typename _Base>
-		class win_main_holder : public _Base
+		template <typename _WinMainImpl>
+		class win_main_holder : public application_instance, public _WinMainImpl
 		{
 		private:
-			application_instance app_instance;
+			//application_instance app_instance;
 		public:
 			win_main_holder(
-				HINSTANCE hInstance, 
-				HINSTANCE hPrevInstance, 
+				HINSTANCE hInstance,
+				HINSTANCE hPrevInstance,
 				LPSTR lpCmdLine, 
 				int nCmdShow
-			) : app_instance(hInstance, hPrevInstance, lpCmdLine, nCmdShow)
+			) :
+				application_instance(hInstance, hPrevInstance, lpCmdLine, nCmdShow)
 			{}
 		};
 	}
