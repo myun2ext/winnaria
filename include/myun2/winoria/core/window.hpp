@@ -1,6 +1,8 @@
 #ifndef __github_com_myun2__winoria__core__window_HPP__
 #define __github_com_myun2__winoria__core__window_HPP__
 
+#include <windows.h>
+
 namespace myun2
 {
 	namespace winoria
@@ -37,7 +39,16 @@ namespace myun2
 				}
 			};
 
+			/////////////////////////////////////
+
 			struct create_window_failed_exception {};
+			struct api_assert_exception {};
+
+			template <typename T>
+			void api_assert(T v, const char* msg) {
+				if ( v == 0 )
+					throw api_assert_exception;
+			}
 
 			class window
 			{
@@ -63,6 +74,10 @@ namespace myun2
 						param.lpParam);
 
 					if ( m_hWnd == NULL ) throw create_window_failed_exception;
+				}
+
+				void display(int flag = SW_SHOWDEFAULT) { 
+					api_assert( ::ShowWindow(m_hWnd, flag), "ShowWindow() returned failed." );
 				}
 			};
 		}
