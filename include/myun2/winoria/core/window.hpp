@@ -27,7 +27,7 @@ namespace myun2
 				{
 					lpClassName = NULL;
 					lpWindowName = NULL;
-					dwStyle = NULL;
+					dwStyle = 0;
 					x = 0;
 					y = 0;
 					nWidth = 0;
@@ -47,7 +47,7 @@ namespace myun2
 			template <typename T>
 			void api_assert(T v, const char* msg) {
 				if ( v == 0 )
-					throw api_assert_exception;
+					throw api_assert_exception();
 			}
 
 			class window
@@ -58,7 +58,7 @@ namespace myun2
 				window(){}
 				window(const window_options& params) { create(params); }
 				
-				void create(const window_options& params)
+				void create(const window_options& param)
 				{
 					m_hWnd = ::CreateWindow(
 						param.lpClassName,
@@ -73,7 +73,7 @@ namespace myun2
 						param.hInstance,
 						param.lpParam);
 
-					if ( m_hWnd == NULL ) throw create_window_failed_exception;
+					if ( m_hWnd == NULL ) throw create_window_failed_exception();
 				}
 
 				void display(int flag = SW_SHOWDEFAULT) { 
