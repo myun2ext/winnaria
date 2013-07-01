@@ -10,7 +10,7 @@ namespace myun2
 	{
 		namespace core
 		{
-			struct api_failed_exception {};
+			DECL_WINORIA_EXCEPTION(api_failed_exception);
 
 			template <typename T>
 			void api_assert(T v, const char* msg) {

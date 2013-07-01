@@ -17,4 +17,13 @@ namespace myun2
 	}
 }
 
+#define DECL_WINORIA_EXCEPTION(name)	\
+		class name : public exception	\
+		{	\
+		public:	\
+			name(){}	\
+			name(const char* s): exception(s){}	\
+			name(const ::std::string& s): exception(s){}	\
+		};
+
 #endif//__github_com_myun2__winoria__exception_HPP__
