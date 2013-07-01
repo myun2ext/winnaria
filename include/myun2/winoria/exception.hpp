@@ -10,9 +10,13 @@ namespace myun2
 		class exception : public ::std::string
 		{
 		public:
-			exception(){}
-			exception(const char* s): ::std::string(s){}
-			exception(const ::std::string& s): ::std::string(s){}
+			int code;
+			exception() {}
+			exception(const char* s): ::std::string(s) {}
+			exception(const ::std::string& s): ::std::string(s) {}
+			exception(int code_in): code(code_in) {}
+			exception(int code_in, const char* s): code(code_in), ::std::string(s) {}
+			exception(int code_in, const ::std::string& s): code(code_in), ::std::string(s) {}
 		};
 	}
 }
@@ -21,9 +25,12 @@ namespace myun2
 		class name : public exception	\
 		{	\
 		public:	\
-			name(){}	\
-			name(const char* s): exception(s){}	\
-			name(const ::std::string& s): exception(s){}	\
+			name() {}	\
+			name(const char* s): exception(s) {}	\
+			name(const ::std::string& s): exception(s) {}	\
+			name(int code_in): exception(code_in) {}	\
+			name(int code_in, const char* s): exception(code_i, s) {}	\
+			name(int code_in, const ::std::string& s): exception(code_in, s) {}	\
 		};
 
 #endif//__github_com_myun2__winoria__exception_HPP__

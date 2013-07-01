@@ -7,9 +7,16 @@ class win_main
 public:
 	int run()
 	{
-		window win;
-		win.run();
-		return 0;
+		try
+		{
+			window win;
+			win.run();
+			return 0;
+		}
+		catch(const ::std::string& msg)
+		{
+			printf("%s\n", msg.c_str());
+		}
 	}
 };
 
