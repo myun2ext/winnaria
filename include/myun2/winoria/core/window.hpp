@@ -2,6 +2,7 @@
 #define __github_com_myun2__winoria__core__window_HPP__
 
 #include <windows.h>
+#include "myun2/winoria/core/api_assert.hpp"
 
 namespace myun2
 {
@@ -42,13 +43,6 @@ namespace myun2
 			/////////////////////////////////////
 
 			struct create_window_failed_exception {};
-			struct api_assert_exception {};
-
-			template <typename T>
-			void api_assert(T v, const char* msg) {
-				if ( v == 0 )
-					throw api_assert_exception();
-			}
 
 			class window
 			{
@@ -73,7 +67,8 @@ namespace myun2
 						param.hInstance,
 						param.lpParam);
 
-					if ( m_hWnd == NULL ) throw create_window_failed_exception();
+					if ( m_hWnd == NULL )
+						throw_last_error_exception <create_window_failed_exception> ();
 				}
 
 				void display(int flag = SW_SHOWDEFAULT) { 
