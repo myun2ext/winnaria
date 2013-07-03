@@ -29,7 +29,7 @@ namespace myun2
 			name(const char* s): exception(s) {}	\
 			name(const ::std::string& s): exception(s) {}	\
 			name(int code_in): exception(code_in) {}	\
-			name(int code_in, const char* s): exception(code_i, s) {}	\
+			name(int code_in, const char* s): exception(code_in, s) {}	\
 			name(int code_in, const ::std::string& s): exception(code_in, s) {}	\
 		};
 

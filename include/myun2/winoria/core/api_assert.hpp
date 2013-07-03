@@ -16,19 +16,20 @@ namespace myun2
 			template <typename T>
 			void assert_nonzero_api_returned(T v, const char* detail="")
 			{
-				if ( value == 0 )
+				if ( v == 0 )
 				{
 					throw api_failed_exception(v, format_message(v) + detail);
 				}
 			}
 
 			template <typename T>
-			void throw_format_exception(DWORD code, const char* detail="") {
-				throw T(code, format_message(v) + detail);
+			void throw_formatted_exception(DWORD code, const char* detail="") {
+				throw T(code, format_message(code) + detail);
 			}
 
+			template <typename T>
 			void throw_last_error_exception(const char* detail="") {
-				throw_format_exception(::GetLastError(), detail);
+				throw_formatted_exception<T> (::GetLastError(), detail);
 			}
 		}
 	}
