@@ -1,5 +1,5 @@
-#ifndef __github_com_myun2__winoria__core__api_assert_HPP__
-#define __github_com_myun2__winoria__core__api_assert_HPP__
+#ifndef __github_com_myun2__winoria__core__assertion_HPP__
+#define __github_com_myun2__winoria__core__assertion_HPP__
 
 #include <windows.h>
 #include "myun2/winoria/exception.hpp"
@@ -23,6 +23,11 @@ namespace myun2
 			}
 
 			template <typename T>
+			void api_valid_assert(T v, const char* detail="") {
+				assert_nonzero_api_returned(v, detail);
+			}
+
+			template <typename T>
 			void throw_formatted_exception(DWORD code, const char* detail="") {
 				throw T(code, format_message(code) + detail);
 			}
@@ -35,4 +40,4 @@ namespace myun2
 	}
 }
 
-#endif//__github_com_myun2__winoria__core__api_assert_HPP__
+#endif//__github_com_myun2__winoria__core__assertion_HPP__

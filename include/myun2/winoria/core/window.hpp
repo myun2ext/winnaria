@@ -2,7 +2,7 @@
 #define __github_com_myun2__winoria__core__window_HPP__
 
 #include <windows.h>
-#include "myun2/winoria/core/api_assert.hpp"
+#include "myun2/winoria/core/assertion.hpp"
 
 namespace myun2
 {
@@ -42,7 +42,7 @@ namespace myun2
 
 			/////////////////////////////////////
 
-			struct create_window_failed_exception {};
+			DECL_WINORIA_EXCEPTION(create_window_failed_exception);
 
 			class window
 			{
@@ -72,7 +72,7 @@ namespace myun2
 				}
 
 				void display(int flag = SW_SHOWDEFAULT) { 
-					api_assert( ::ShowWindow(m_hWnd, flag), "ShowWindow() returned failed." );
+					api_valid_assert( ::ShowWindow(m_hWnd, flag), "ShowWindow() returned failed." );
 				}
 			};
 		}

@@ -1,4 +1,5 @@
 #include "myun2/winoria/window.hpp"
+#include <stdio.h>
 
 using namespace myun2::winoria;
 
