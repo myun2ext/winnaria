@@ -14,17 +14,27 @@ namespace myun2
 			DECL_WINORIA_EXCEPTION( register_window_class_failed );
 			DECL_WINORIA_EXCEPTION( release_window_class_failed );
 
+			////
+
 			class window_class
 			{
 			public:
-				::WNDCLASS wndcls;
+				typedef ::WNDCLASSEX core_type;
+				core_type wndcls;
 			private:
 				::std::string window_class_name;
-				void zeroreset() { ZeroMemory(&wndcls, sizeof(wndcls)); }
+				void reset_class() {
+					ZeroMemory(&wndcls, sizeof(wndcls));
+					wndcls.cbSize = sizeof(core_type);
+				}
 			public:
-				window_class(){ zeroreset(); }
+				window_class() { reset_class(); }
+				window_class(ATOM atom) {
+					reset_class();
+					wndcls.lpszClassName = atom;
+				}
 				window_class(const char* name) : window_class_name(name) {
-					zeroreset();
+					reset_class();
 					wndcls.lpszClassName = window_class_name.c_str();
 				}
 
