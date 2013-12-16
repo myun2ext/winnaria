@@ -18,39 +18,39 @@ namespace myun2
 
 			class window_class
 			{
-			public:
-				typedef ::WNDCLASSEX core_type;
-				core_type wndcls;
 			private:
+				typedef WNDCLASSEX core_type;
+				typedef ATOM atom_type;
+
+				core_type wndcls;
+				atom_type atom;
 				::std::string window_class_name;
+
 				void reset_class() {
 					ZeroMemory(&wndcls, sizeof(wndcls));
 					wndcls.cbSize = sizeof(core_type);
 				}
 			public:
 				window_class() { reset_class(); }
-				window_class(ATOM atom) {
-					reset_class();
-					wndcls.lpszClassName = atom;
-				}
 				window_class(const char* name) : window_class_name(name) {
 					reset_class();
 					wndcls.lpszClassName = window_class_name.c_str();
 				}
 
 				void regist() const {
-					if ( ::RegisterClass(&wndcls) == 0 )
+					atom = ::RegisterClassEx(&wndcls)
+					if ( atom == 0 )
 						throw register_window_class_failed();
 				}
 				void release(HINSTANCE hAppInstance = NULL) const {
-					if ( ::UnregisterClass(wndcls.lpszClassName, hAppInstance) == 0 )
+					if ( ::UnregisterClass(get_class_name(), hAppInstance) == 0 )
 						throw release_window_class_failed();
 				}
 
-				::WNDCLASS& get_wndclass() { return wndcls; }
-				const ::WNDCLASS& get_wndclass() const { return wndcls; }
+				core_type& get_wndclass() { return wndcls; }
+				const core_type& get_wndclass() const { return wndcls; }
 
-				const char* get_class_name() const { return wndcls.lpszClassName; }
+				const char* get_class_name() const { return window_class_name.c_str(); }
 			};
 		}
 	}
