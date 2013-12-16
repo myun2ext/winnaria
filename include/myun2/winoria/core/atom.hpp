@@ -18,6 +18,8 @@ namespace myun2
 			public:
 				atom(){}
 				atom(const ImplType& in_value) : value(in_value) {}
+
+				operator atom_type() const { return value; }
 			};
 		}
 	}
