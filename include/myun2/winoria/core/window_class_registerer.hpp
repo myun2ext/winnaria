@@ -25,14 +25,14 @@ namespace myun2
 				atom wc_atom;
 			public:
 				window_class_registerer(const window_class& _wc) : wc(_wc){ wc_atom = register_class(wc); }
-				virtual ~window_class_registerer(){ unregister(wc.get_class_name()); }
+				virtual ~window_class_registerer() { unregister(wc.get_class_name()); }
 
 				static ::ATOM register_class(const window_class& wc)
 				{
-					::ATOM atom = ::RegisterClassEx((::WNDCLASSEX*)wndcls)
-					if ( atom == 0 )
+					::ATOM ret_atom = ::RegisterClassEx((const ::WNDCLASSEX*)wc);
+					if ( ret_atom == 0 )
 						throw failed_register_window_class();
-					return atom;
+					return ret_atom;
 				}
 
 				static void unregister(LPCTSTR class_name, HINSTANCE hAppInstance = NULL){
