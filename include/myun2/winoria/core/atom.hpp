@@ -15,7 +15,7 @@ namespace myun2
 			class atom
 			{
 			public:
-				typedef ATOM ImplType, atom_type;
+				typedef ATOM ImplType, impl_type, atom_type;
 			private:
 				atom_type value;
 			public:
