@@ -6,7 +6,7 @@ using myun2::winoria::core::window_class_registerer;
 
 int main()
 {
-	window_class wc("Example Window Class");
+	window_class wc("");
 	window_class_registerer::register_class(wc);
 
 	return 1;
