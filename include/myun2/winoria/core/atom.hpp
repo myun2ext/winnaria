@@ -37,5 +37,3 @@ namespace myun2
 }
 
 #endif//__github_com_myun2__winoria__core__atom_HPP__
-//http://msdn.microsoft.com/en-us/library/windows/desktop/ms649053(v=vs.85).aspx
-//http://msdn.microsoft.com/ja-jp/library/cc429245.aspx
